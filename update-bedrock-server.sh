@@ -56,9 +56,7 @@ while true; do
 done
 
 # Check the latest Minecraft Bedrock Edition Server available.
-source=$(curl -s -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36" https://www.minecraft.net/en-us/download/server/bedrock)
-
-link=$(echo "$source" | grep -o '"https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-[^"]*"' | sed 's/"//g') 
+link=$(curl -s https://net-secondary.web.minecraft-services.net/api/v1.0/download/links | grep -oP '"downloadType":"serverBedrockLinux"[^}]*"downloadUrl":"\K[^"]+')
 
 zip_file=$(basename "$link")
 
